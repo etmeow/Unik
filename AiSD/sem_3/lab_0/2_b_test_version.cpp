@@ -34,7 +34,6 @@ int main() {
     vector<int> x, my_x, x_sorted;
     vector<float> d;
     bool is_equal;
-    int p;
 
     float a = 2, b = -9, c = -10;
 
