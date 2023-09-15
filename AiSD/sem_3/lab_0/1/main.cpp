@@ -248,16 +248,13 @@ int main()  {
 
     while (myfile) {
 
-        
-
-        std::getline(myfile, line);
+                std::getline(myfile, line);
 
         linear_counter += linear_search(line, search_word);
         rk_counter += rk_search(line, search_word);
         kmp_counter += kmp_search(line, search_word);
         bm_counter += bm_search(line, search_word);
 
-    
 
     }
 
