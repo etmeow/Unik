@@ -7,18 +7,25 @@
 
 using namespace std;
 
-int linear_search(const string& str, const string& substr) {
+vector<int> linear_search(const string& str, const string& substr) {
+
+    vector<int> ans;
 
     int counter = 0;
+    int cmprs  = 0;
     int j = 0;
 
     for (int i = 0; i < str.length(); i++) {
+
+        cmprs += 1;
 
         if (str[i] == substr[0]) {
 
             bool found = true;
 
             for (int j = 1; j < substr.length(); j++) {
+
+                cmprs += 1;
 
                 if (str[i + j] != substr[j]) {
 
@@ -33,8 +40,11 @@ int linear_search(const string& str, const string& substr) {
 
 
     }
+
+    ans.push_back(counter);
+    ans.push_back(cmprs);
     
-    return counter;
+    return ans;
 }
 
 int Hash(const char* str) {
@@ -46,8 +56,11 @@ int Hash(const char* str) {
     return hash;
 }
 
-int rk_search(const string& s, const string& x) {
+vector<int> rk_search(const string& s, const string& x) {
 
+    int cmprs = 0;
+
+    vector<int> ans;
 
     int p = 3, M = 1e9 + 7, l = 0;
     int n = s.length(), m = x.length();
@@ -60,6 +73,8 @@ int rk_search(const string& s, const string& x) {
 
     for (i = 0; i < n - m; i++) {
 
+        cmprs += 1;
+
         if (hs == h) {
 
             t = i;
@@ -69,6 +84,8 @@ int rk_search(const string& s, const string& x) {
 
                 t++;
                 j++;
+
+                cmprs += 1;
             }
 
             if (j == m) {
@@ -94,6 +111,8 @@ int rk_search(const string& s, const string& x) {
 
             t++;
             j++;
+
+            cmprs += 1;
         }
 
         if (j == m) {
@@ -103,7 +122,10 @@ int rk_search(const string& s, const string& x) {
         }
     }
 
-    return counter;
+    ans.push_back(counter);
+    ans.push_back(cmprs);
+    
+    return ans;
 
 }
 
@@ -121,6 +143,9 @@ int main()  {
     int linear_counter = 0;
     int rk_counter = 0;
 
+     int linear_cmprs = 0;
+    int rk_cmprs = 0;
+
 
     /* getline(myfile, line);
 
@@ -136,13 +161,19 @@ int main()  {
 
         std::getline(myfile, line);
 
-        linear_counter += linear_search(line, search_word);
-        rk_counter += rk_search(line, search_word);
+
+        linear_counter += linear_search(line, search_word)[0];
+        rk_counter += rk_search(line, search_word)[0];
+
+        linear_cmprs += linear_search(line, search_word)[1];
+        rk_cmprs += rk_search(line, search_word)[1];
+
+        
 
     }
 
-    cout << linear_counter << endl;
-    cout << rk_counter << endl;
+    cout << "Linear search: " << linear_counter << " cmprs - " << linear_cmprs <<  endl;
+    cout << "Rabin Karp search: " << rk_counter << " cmprs - " << rk_cmprs  << endl;
 
 
     
