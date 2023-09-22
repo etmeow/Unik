@@ -115,7 +115,7 @@ int main()  {
 
     ifstream myfile;
     myfile.open("data.txt");
-    string search_word = "Mumu";
+    string search_word = "Kolobok";
     string line;
 
     int linear_counter = 0;

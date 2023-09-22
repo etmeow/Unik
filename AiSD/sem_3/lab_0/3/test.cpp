@@ -16,16 +16,17 @@ int best_hor_steps = 9999;
 bool findPath(int hor_steps, const Point& start, const Point& end, std::vector<std::vector<int>>& maze, std::vector<Point>& result, std::vector<std::vector<bool>>& visited) {
     if (start.x == end.x && start.y == end.y) {
 
+        cout << "end";
+
         result.push_back(start);
 
         if (result.size() < bestPath.size() || bestPath.size() == 0) {
 
             cout << hor_steps << "\n";
 
-            if (hor_steps < best_hor_steps) {
-
-                bestPath = result;
-            }
+            
+            bestPath = result;
+            
         }
 
 
