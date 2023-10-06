@@ -96,7 +96,7 @@ bool way_back(vector<int> start, vector<int> end, vector<vector<int>> path) {
     if (start == end) {
 
         p2 = path;
-        // cout << "Way back!";
+        cout << "Way back!";
         return true;
 
     } else {
@@ -133,8 +133,14 @@ bool find_path(vector<int> start, vector<int> end, vector<vector<int>> path) {
 
     if (start == end) {
 
-        p1 = path;
-        return way_back(e, s, {{e}});
+        
+        if ( way_back(e, s, {{e}}) ) {
+
+            p1 = path;
+            return true;
+        }
+
+        return false;
 
     } else {
 
@@ -180,20 +186,26 @@ int main() {
 
     path.push_back(s);
     
-    find_path(s, e, path);
+    if (find_path(s, e, path) ) {
+   
 
-    print_board(board);
+        print_board(board);
 
-    for (auto x : p1) {
+        for (auto x : p1) {
 
-        cout << "(" <<x[0] << "," << x[1] << ")" << "->";
-    }
+            cout << "(" <<x[0] << "," << x[1] << ")" << "->";
+        }
 
-    cout << "\n";
+        cout << "\n";
 
-    for (auto x : p2) {
+        for (auto x : p2) {
 
-        cout << "(" <<x[0] << "," << x[1] << ")" << "->";
+            cout << "(" <<x[0] << "," << x[1] << ")" << "->";
+        }
+
+    } else {
+    
+        cout << "\n((\n";
     }
 
     //print_board(board);
